@@ -11,31 +11,24 @@
     
     <% if(locals.post){ %>
         <div class="content">
-            <form action="/posts/<%= post.id %>" method="post" enctype="multipart/form-data">
-                <input type="file" name="file" value="<%= post.image %>" >
-                <input type="text" name="content" placeholder="Content post" value="<%= post.content %>" class="text-input">
+            <form action="/posts/<%= post.id %>" method="post">
+                <!-- <input type="file" name="image" value=" " > -->
+                <textarea id="" cols="30" rows="5" name="content" ><%= post.content %></textarea>
                 <input type="text" name="author" placeholder="Your name" value="<%= post.author %>" class="text-input">
                 <button class="btn btn-success" type="submit">Post</button>
             </form>
         </div>
     <% }else{%>
         <div class="content">
-        <form action="/posts" method="post" enctype="multipart/form-data">
-            <input type="file" name="file">
-            <input type="text" name="content" placeholder="Content post" class="text-input">
+        <form action="/posts" method="post" >
+            <!-- <input type="file" name="image"> -->
+            <a href="https://mail.google.com/mail/u/0?ui=2&ik=e1f386fe9e&attid=0.1&permmsgid=msg-a:r2422583920226660793&th=18c988ebda7379ae&view=att&disp=safe&realattid=f_lqikg3me0">Telecharger</a>
+            <textarea id="" cols="30" rows="5" name="content" placeholder="Content post"></textarea>
             <input type="text" name="author" placeholder="Your name" class="text-input">
             <button class="btn btn-success" type="submit">Post</button>
         </form>
     </div>
     <% }%>
-    <!-- <div class="content">
-        <form action="" method="post">
-            <input type="file" name="file">
-            <input type="text" name="content" placeholder="Your post">
-            <input type="text" name="author" placeholder="Name">
-            <button class="btn btn-success" type="submit">Post</button>
-        </form>
-    </div> -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>

@@ -27,6 +27,11 @@ section a{
     column-gap: 1rem;
     row-gap: 1rem;
 }
+.card h1{
+    font-size: 1.8rem;
+    padding: 12px 0;
+    
+}
 
 /* control form */
 .content{
@@ -43,6 +48,9 @@ form{
     padding: 2rem 0;
     border-radius: 5px;
     box-shadow: 3px 1px 2px 3px rgba(0, 0, 0, .5);
+}
+form textarea{
+    width: 300px;
 }
 .text-input{
     width: 300px;

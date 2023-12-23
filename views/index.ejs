@@ -15,11 +15,12 @@
             <% if(locals.posts){%>
                 <% posts.forEach((post) =>{%>
                     <div class="card" style="width: 18rem;">
-                    <img src="<%= post.image %>" class="card-img-top" alt="...">
+                        <h1 class="text-center">Blog Posts</h1>
+                    <!-- <img src="" class="card-img-top" alt="..."> -->
                     <div class="card-body">
-                        <small><%= post.publish %></small>
-                        <p><%= post.content %></p>
-                        <span><%= post.author %></span><br>
+                        <h5><%= post.content %></h5>
+                        <small><%= post.publish %></small><br>
+                        <span>Posted by: <%= post.author %></span><br>
                         <a href="edit/<%= post.id %>" class="btn btn-primary">Edit</a>
                         <a href="/posts/<%= post.id %>" class="btn btn-danger me-2">Delete</a>
 

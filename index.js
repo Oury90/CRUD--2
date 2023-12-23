@@ -1,15 +1,29 @@
 import express from "express";
 import bodyParser from "body-parser";
 import axios from "axios";
+import multer from "multer";
 
 const app = express();
 const port = 3000;
 const URL_API = "http://localhost:4000"
 
+
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 app.use(express.static("public"));
+
 app.set("view engine", "ejs");
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/images/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+});
+
+const upload = multer({ storage: storage });
 
 // get post
 app.get("/", async(req, res) =>{
@@ -43,6 +57,7 @@ app.get("/edit/:id", async(req, res) =>{
 app.post("/posts", async(req, res) =>{
     try {
         const response = await axios.post(`${URL_API}/posts`, req.body);
+        // console.log(response.data);
         res.redirect("/");
     } catch (error) {
         console.error(error);
@@ -58,7 +73,6 @@ app.post("/posts/:id", async(req, res) =>{
     } catch (error) {
         console.error(error);
     }
-   
 })
 // delete post
 app.get("/posts/:id", async(req, res) =>{

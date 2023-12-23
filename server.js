@@ -1,8 +1,22 @@
 import express from "express";
 import bodyParser from "body-parser";
+// import multer from "multer";
+
 
 const app = express();
 const port = 4000;
+
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, 'public/images/');
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, Date.now() + '-' + file.originalname);
+//     }
+// });
+
+// const upload = multer({ storage: storage });
+let img = "images/greenhouse.jpg";
 
 // create the new date
 let datePublication = new Date();
@@ -17,31 +31,9 @@ let dateFormated = `${jour}/${mois}/${annee}`; // Date format
 let posts =[
     {
         id: 1,
-        image: "images/greenhouse.jpg",
-        publish: dateFormated,
         content: "lorem ipsum",
+        publish: dateFormated,
         author: "Diallo"
-    },
-    {
-        id: 2,
-        image: "images/greenhouse.jpg",
-        publish: dateFormated,
-        content: "lorem ipsum",
-        author: "Bah"
-    },
-    {
-        id: 3,
-        image: "images/greenhouse.jpg",
-        publish: dateFormated,
-        content: "lorem ipsum",
-        author: "Balde"
-    },
-    {
-        id: 4,
-        image: "images/greenhouse.jpg",
-        publish: dateFormated,
-        content: "lorem ipsum",
-        author: "sow"
     }
 ]
 
@@ -65,9 +57,8 @@ app.post("/posts", (req, res) =>{
     const newId = numId +1;
     const post ={
         id: newId,
-        image: req.body.image,
-        publish: req.body.publish,
         content: req.body.content,
+        publish: dateFormated,
         author: req.body.author,
     }
     numId = newId;
@@ -81,9 +72,8 @@ app.patch("/posts/:id", (req, res) =>{
     const post = posts.find((post) => post.id === id);
     if(!post) return res.status(400).json({message: "Post note edit"});
 
-    if(req.body.image) post.image = req.body.image;
-    if(req.body.publish) post.publish = req.body.publish;
     if(req.body.content) post.content = req.body.content;
+    if(req.body.publish) post.publish = req.body.publish;
     if(req.body.author) post.author = req.body.author;
 
     res.json(post);
